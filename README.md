@@ -5,9 +5,9 @@ This project contains examples from the [Lift Cookbook](http://shop.oreilly.com/
 
 To run this application:
 
-* Launch SBT with: `./sbt` or `sbt.bat`
+* Launch SBT with: `sbt`
 
-* In SBT, `container:start`
+* In SBT, `jetty:start`
 
 * Visit http://127.0.0.1:8080/ in your browser.
 
