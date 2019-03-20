@@ -2,21 +2,22 @@ package code.snippet
 
 import net.liftweb.util.Helpers._
 import net.liftweb.http.SHtml
-import net.liftweb.http.js.{JsCmd, JE}
+import net.liftweb.http.js.{JE, JsCmd}
 import net.liftweb.common.Loggable
 import net.liftweb.json.JsonAST._
 import net.liftweb.http.js.JsCmds.Alert
-import net.liftweb.json.DefaultFormats
+import net.liftweb.json.{DefaultFormats, Formats}
+import net.liftweb.util.CssSel
 
 object JsonCall extends Loggable {
 
-  implicit val formats = DefaultFormats
+  implicit val formats: Formats = DefaultFormats
 
   case class Question(first: Int, second: Int, answer: Int) {
-    def valid_? = first + second == answer
+    def valid_? : Boolean = first + second == answer
   }
 
-  def render = {
+  def render: CssSel = {
 
     def validate(value: JValue) : JsCmd = {
       logger.info(value)
@@ -28,6 +29,6 @@ object JsonCall extends Loggable {
     }
 
     "button [onclick]" #>
-      SHtml.jsonCall( JE.Call("currentQuestion"), validate _ )
+      SHtml.jsonCall( JE.Call("currentQuestion"), validate )
   }
 }

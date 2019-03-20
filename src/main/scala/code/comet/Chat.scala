@@ -1,21 +1,22 @@
 package code.comet
 
-import net.liftweb.http.{ListenerManager, CometListener, CometActor}
+import net.liftweb.http.{CometActor, CometListener, ListenerManager, RenderOut}
 import net.liftweb.actor.LiftActor
+import net.liftweb.common.SimpleActor
 
 class ChatClient extends CometActor with CometListener {
 
-  def registerWith = ChatServer
+  def registerWith: SimpleActor[Any] = ChatServer
 
-  private var msgs : Vector[String] = Vector()
+  private var msgs: Vector[String] = Vector()
 
-  override def lowPriority = {
+  override def lowPriority: PartialFunction[Any, Unit] = {
     case xs: Vector[String] =>
       msgs = xs
       reRender()
   }
 
-  def render = "li *" #> msgs
+  def render: RenderOut = "li *" #> msgs
 
 }
 
@@ -24,9 +25,9 @@ object ChatServer extends LiftActor with ListenerManager {
 
   private var msgs = Vector("Welcome")
 
-  def createUpdate = msgs
+  def createUpdate: Any = msgs
 
-  override def lowPriority = {
+  override def lowPriority: PartialFunction[Any, Unit] = {
     case s: String =>
       msgs :+= s
       updateListeners()

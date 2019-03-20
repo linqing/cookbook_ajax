@@ -5,6 +5,8 @@ import net.liftweb.util.Helpers._
 import net.liftweb.http.SHtml.ajaxSelect
 import net.liftweb.http.js.JsCmd
 import net.liftweb.http.js.JsCmds.SetHtml
+import net.liftweb.util.CssSel
+
 import xml.Text
 
 class HtmlSelectSnippet {
@@ -12,7 +14,7 @@ class HtmlSelectSnippet {
   type Planet = String
   type LightYears = Double
 
-  val database = Map[Planet,LightYears](
+  private val database = Map[Planet,LightYears](
     "Alpha Centauri Bb" -> 4.23,
     "Tau Ceti e" -> 11.90,
     "Tau Ceti f" -> 11.90,
@@ -20,9 +22,9 @@ class HtmlSelectSnippet {
     "82 G Eridani b" -> 19.71
   )
 
-  def render = {
+  def render: CssSel = {
 
-    val blankOption = ("" -> "")
+    val blankOption = "" -> ""
 
     val options : List[(String,String)] =
       blankOption ::

@@ -1,7 +1,7 @@
 package code.rest
 
 import net.liftweb.http.rest.RestHelper
-import net.liftweb.http.{ResponseWithReason, BadResponse, OkResponse}
+import net.liftweb.http.{BadRequestResponse, OkResponse, ResponseWithReason}
 
 object AjaxFileUpload extends RestHelper {
 
@@ -13,7 +13,7 @@ object AjaxFileUpload extends RestHelper {
       }
 
       if (req.uploadedFiles.exists( _.mimeType != "image/png" ))
-        ResponseWithReason(BadResponse(), "Only PNGs")
+        ResponseWithReason(BadRequestResponse(), "Only PNGs")
       else
         OkResponse()
 

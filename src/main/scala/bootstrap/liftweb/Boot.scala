@@ -84,5 +84,8 @@ class Boot {
       */
 
     LiftRules.dispatch.append(code.rest.AjaxFileUpload)
+
+
+    LiftRules.securityRules = () => new SecurityRules(content = None)
   }
 }
