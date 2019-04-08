@@ -1,8 +1,8 @@
 package code.comet
 
-import net.liftweb.http.{CometActor, CometListener, ListenerManager, RenderOut}
 import net.liftweb.actor.LiftActor
 import net.liftweb.common.SimpleActor
+import net.liftweb.http.{CometActor, CometListener, ListenerManager, RenderOut}
 
 class ChatClient extends CometActor with CometListener {
 

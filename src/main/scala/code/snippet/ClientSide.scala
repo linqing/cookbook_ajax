@@ -1,9 +1,9 @@
 package code.snippet
 
-import net.liftweb.util.Helpers._
-import net.liftweb.http.js.JsCmds.{Alert, RedirectTo}
 import net.liftweb.http.js.JE
+import net.liftweb.http.js.JsCmds.{Alert, RedirectTo}
 import net.liftweb.util.CssSel
+import net.liftweb.util.Helpers._
 
 object ClientSide {
 

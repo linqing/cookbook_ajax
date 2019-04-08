@@ -1,13 +1,13 @@
 package code.snippet
 
-import net.liftweb.util.Helpers._
-import net.liftweb.http.SHtml
-import net.liftweb.http.js.{JE, JsCmd}
 import net.liftweb.common.Loggable
-import net.liftweb.json.JsonAST._
+import net.liftweb.http.SHtml
 import net.liftweb.http.js.JsCmds.Alert
+import net.liftweb.http.js.{JE, JsCmd}
+import net.liftweb.json.JsonAST._
 import net.liftweb.json.{DefaultFormats, Formats}
 import net.liftweb.util.CssSel
+import net.liftweb.util.Helpers._
 
 object JsonCall extends Loggable {
 
@@ -19,7 +19,7 @@ object JsonCall extends Loggable {
 
   def render: CssSel = {
 
-    def validate(value: JValue) : JsCmd = {
+    def validate(value: JValue): JsCmd = {
       logger.info(value)
       value.extractOpt[Question].map(_.valid_?) match {
         case Some(true) => Alert("Looks good")
@@ -29,6 +29,6 @@ object JsonCall extends Loggable {
     }
 
     "button [onclick]" #>
-      SHtml.jsonCall( JE.Call("currentQuestion"), validate )
+      SHtml.jsonCall(JE.Call("currentQuestion"), validate)
   }
 }

@@ -1,11 +1,11 @@
 package code.snippet
 
-import net.liftweb.util.Helpers._
-import net.liftweb.http.js.JsCmds.Alert
 import net.liftweb.http.S
+import net.liftweb.http.js.JsCmds.Alert
 import net.liftweb.util.CssSel
+import net.liftweb.util.Helpers._
 
-import xml.NodeSeq
+import scala.xml.NodeSeq
 
 class JavascriptTail {
 

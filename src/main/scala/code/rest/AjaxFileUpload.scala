@@ -12,7 +12,7 @@ object AjaxFileUpload extends RestHelper {
         println("Received %s of type %s" format(file.fileName, file.mimeType))
       }
 
-      if (req.uploadedFiles.exists( _.mimeType != "image/png" ))
+      if (req.uploadedFiles.exists(_.mimeType != "image/png"))
         ResponseWithReason(BadRequestResponse(), "Only PNGs")
       else
         OkResponse()

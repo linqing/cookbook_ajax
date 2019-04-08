@@ -1,20 +1,20 @@
 package code.snippet
 
 import net.liftweb.common.Empty
-import net.liftweb.util.Helpers._
 import net.liftweb.http.SHtml.ajaxSelect
 import net.liftweb.http.js.JsCmd
 import net.liftweb.http.js.JsCmds.SetHtml
 import net.liftweb.util.CssSel
+import net.liftweb.util.Helpers._
 
-import xml.Text
+import scala.xml.Text
 
 class HtmlSelectSnippet {
 
   type Planet = String
   type LightYears = Double
 
-  private val database = Map[Planet,LightYears](
+  private val database = Map[Planet, LightYears](
     "Alpha Centauri Bb" -> 4.23,
     "Tau Ceti e" -> 11.90,
     "Tau Ceti f" -> 11.90,
@@ -26,13 +26,13 @@ class HtmlSelectSnippet {
 
     val blankOption = "" -> ""
 
-    val options : List[(String,String)] =
+    val options: List[(String, String)] =
       blankOption ::
-      database.keys.map(p => (p,p)).toList
+        database.keys.map(p => (p, p)).toList
 
     val default = Empty
 
-    def handler(selected: String) : JsCmd = {
+    def handler(selected: String): JsCmd = {
       SetHtml("distance", Text(database(selected) + " light years"))
     }
 

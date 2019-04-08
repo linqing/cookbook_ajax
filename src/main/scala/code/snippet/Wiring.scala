@@ -3,12 +3,13 @@ package code.snippet
 import java.text.NumberFormat
 import java.util.Locale
 
-import scala.xml.{NodeSeq, Text}
-import net.liftweb.util.Helpers._
-import net.liftweb.util.{Cell, CssSel, ValueCell}
-import net.liftweb.http.{S, WiringUI}
 import net.liftweb.http.SHtml.ajaxInvoke
 import net.liftweb.http.js.JsCmd
+import net.liftweb.http.{S, WiringUI}
+import net.liftweb.util.Helpers._
+import net.liftweb.util.{Cell, CssSel, ValueCell}
+
+import scala.xml.{NodeSeq, Text}
 
 class Wiring {
 
@@ -21,14 +22,14 @@ class Wiring {
   def currency(cell: Cell[Double]): NodeSeq => NodeSeq =
     WiringUI.toNode(cell)((value, ns) => Text(formatter format value))
 
-  def increment(): JsCmd  = {
+  def increment(): JsCmd = {
     quantity.atomicUpdate(_ + 1)
     S.notice("Added One")
   }
 
   def render: CssSel =
     "#add [onclick]" #> ajaxInvoke(increment) &
-    "#quantity *" #> WiringUI.asText(quantity) &
-    "#subtotal *" #> currency(subtotal)
+      "#quantity *" #> WiringUI.asText(quantity) &
+      "#subtotal *" #> currency(subtotal)
 
 }
